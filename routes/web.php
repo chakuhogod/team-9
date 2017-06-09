@@ -12,9 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
-Route::get('admin', function () {
-    return view('admin_template');
+Route::get('dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('bookkeeping', function () {
+    return view('bookkeeping');
+});
+
+Route::get('charts', function () {
+    return view('charts');
+});
+
+Route::get('settings', function () {
+    return view('settings');
 });
