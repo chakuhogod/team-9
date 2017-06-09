@@ -30,7 +30,7 @@
             Anything you want
         </div>
         <!-- Default to the left -->
-        <strong>Copyright © 2015 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong>Copyright © 2017 BankLinq.</strong> All rights reserved.
     </footer>
 
 @stop
