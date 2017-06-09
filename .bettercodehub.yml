@@ -1,3 +1,2 @@
 exclude:
 - /resources/lang/en/validation.php
-- /config/app.php
