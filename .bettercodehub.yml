@@ -1,2 +1,6 @@
 exclude:
 - /resources/lang/.*
+- /config/app.php
+- config/database.php
+- config/cache.php
+- config/queue.php
