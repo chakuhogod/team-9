@@ -11,6 +11,14 @@
 |
 */
 
+Route::get('/login2', function () {
+    return view('authentication.login');
+});
+
+Route::get('/register2', function () {
+    return view('authentication.register');
+});
+
 Route::get('/login', function () {
     return view('auth.login');
 });
