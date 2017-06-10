@@ -30,3 +30,9 @@ Route::get('/charts', 'HomeController@charts')->name('/charts');
 Route::get('/settings', 'HomeController@settings')->name('/settings');
 
 Route::get('/bookkeeping', 'HomeController@bookkeeping')->name('/bookkeeping');
+
+Route::get('settings', function () {
+    return view('settings');
+});
+
+Route::get('abn', 'AbnController@getAccounts');
