@@ -2,6 +2,7 @@ exclude:
 - /resources/lang/en/validation.php
 - /config/app.php
 - /config/database.php
+- /config/cache.php
 component_depth: 2
 languages:
 - php
