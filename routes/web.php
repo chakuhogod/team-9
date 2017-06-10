@@ -18,3 +18,12 @@ Route::get('/', function () {
 Route::get('admin', function () {
     return view('admin_template');
 });
+
+
+Route::get('Test', 'Test@GetData');
+
+Route::get('ExactLogin', 'ExactLogin@GetData');
+
+Route::get('ExactLoginDone', 'ExactLoginDone@GetData');
+
+Route::get('ExactAddSale', 'ExactAddSale@GetData');
