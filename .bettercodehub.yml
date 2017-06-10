@@ -1,2 +1,10 @@
 exclude:
 - /resources/lang/en/validation.php
+
+component_depth: 2
+languages:
+- php
+
+test:
+  include:
+    - /tests/*.php
