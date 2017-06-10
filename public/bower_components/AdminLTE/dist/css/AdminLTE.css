@@ -5050,3 +5050,7 @@ body {
 .search-bar:focus {
   background-color: #fff;
 }
+
+.content-container {
+  width: 100%;
+}
