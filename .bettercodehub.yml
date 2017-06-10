@@ -5,4 +5,4 @@ languages:
 - php
 test:
   include:
-    - /tests/*.
+    - /tests/.*\.php
