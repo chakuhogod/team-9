@@ -11,14 +11,6 @@
 |
 */
 
-Route::get('/login2', function () {
-    return view('authentication.login');
-});
-
-Route::get('/register2', function () {
-    return view('authentication.register');
-});
-
 Route::get('/login', function () {
     return view('auth.login');
 });
@@ -27,16 +19,14 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
-Route::get('/app', function () {
-    return view('layouts.app');
-});
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('/');
 
-Route::get('/dashboard', 'HomeController@index')->name('/');
+Route::get('/dashboard', 'HomeController@dashboard')->name('/dashboard');
 
-Route::get('/charts', 'HomeController@index')->name('/');
+Route::get('/charts', 'HomeController@charts')->name('/charts');
 
-Route::get('/settings', 'HomeController@index')->name('/');
+Route::get('/settings', 'HomeController@settings')->name('/settings');
+
+Route::get('/bookkeeping', 'HomeController@bookkeeping')->name('/bookkeeping');

@@ -25,4 +25,44 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function bookkeeping()
+    {
+        return view('bookkeeping');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function charts()
+    {
+        return view('charts');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function settings()
+    {
+        return view('settings');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
 }

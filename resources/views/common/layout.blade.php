@@ -172,10 +172,10 @@
             <ul class="sidebar-menu">
                 <li class="header">NAVIGATION</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="/dashboard"><span>Dashboard</span></a></li>
-                <li><a href="/bookkeeping"><span>Bookkeeping</span></a></li>
-                <li><a href="/charts"><span>Charts</span></a></li>
-                <li><a href="/settings"><span>Settings</span></a></li>
+                <li class="{{ Request::is('dashboard') || Request::is('/') || Request::is('') ? 'active' : '' }}"><a href="/dashboard"><span>Dashboard</span></a></li>
+                <li class="{{ Request::is('bookkeeping') ? 'active' : '' }}"><a href="/bookkeeping"><span>Bookkeeping</span></a></li>
+                <li class="{{ Request::is('charts') ? 'active' : '' }}"><a href="/charts"><span>Charts</span></a></li>
+                <li class="{{ Request::is('settings') ? 'active' : '' }}"><a href="/settings"><span>Settings</span></a></li>
             </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

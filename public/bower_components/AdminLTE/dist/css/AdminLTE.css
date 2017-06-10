@@ -4995,7 +4995,6 @@ table.text-center th {
 .container {
   position: relative;
   z-index: 1;
-  max-width: 300px;
   margin: 0 auto;
 }
 .container:before, .container:after {
@@ -5030,4 +5029,24 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.search-filters {
+  background: #222d32;
+  height: auto;
+  border-radius: 5px;
+  padding: 1px;
+}
+
+.search-bar {
+  color: #666;
+  background-color: #374850;
+  border: 0px;
+  border-radius: 5px;
+  height: 40px;
+  width: auto;
+}
+
+.search-bar:focus {
+  background-color: #fff;
 }
