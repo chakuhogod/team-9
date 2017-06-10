@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\JsonResponse;
 use resources\services\ABN\AbnService;
 
 class AbnController extends Controller
@@ -13,7 +13,11 @@ class AbnController extends Controller
 
         $accounts = $abn->getTransactions($oauth);
 
-        /*return view('abn');*/
-        return null;
+        $transaction = $abn->getBalance($oauth);
+
+        $acountInfo = $abn->getAccountInfo($oauth);
+
+
+        return new JsonResponse($accounts);
     }
 }
