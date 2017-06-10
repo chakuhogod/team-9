@@ -1,6 +1,7 @@
 exclude:
 - /resources/lang/en/validation.php
 - /config/.*
+- /app/Http/Middleware/RedirectIfAuthenticated.php
 - /app/Exceptions/.*
 - /bootstrap/.*
 - /lang/.*
