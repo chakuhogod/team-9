@@ -11,22 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
+Route::get('/login2', function () {
+    return view('authentication.login');
 });
 
-Route::get('dashboard', function () {
-    return view('dashboard');
+Route::get('/register2', function () {
+    return view('authentication.register');
 });
 
-Route::get('bookkeeping', function () {
-    return view('bookkeeping');
+Route::get('/login', function () {
+    return view('auth.login');
 });
 
-Route::get('charts', function () {
-    return view('charts');
+Route::get('/register', function () {
+    return view('auth.register');
 });
 
-Route::get('settings', function () {
-    return view('settings');
+Route::get('/app', function () {
+    return view('layouts.app');
 });
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('/');
+
+Route::get('/dashboard', 'HomeController@index')->name('/');
+
+Route::get('/charts', 'HomeController@index')->name('/');
+
+Route::get('/settings', 'HomeController@index')->name('/');
