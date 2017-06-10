@@ -30,3 +30,5 @@ Route::get('charts', function () {
 Route::get('settings', function () {
     return view('settings');
 });
+
+Route::get('abn', 'AbnController@getAccounts');
