@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 
-use resources\Services\ABN\AbnService;
+use resources\services\ABN\AbnService;
 
 class AbnController extends Controller
 {
-    public function getAccounts(AbnService $service)
+    public function getAccounts(AbnService $abn)
     {
-        $oauth = $service->getAccesToken();
+        $oauth = $abn->getAccesToken();
+
+        $accounts = $abn->getTransactions($oauth);
 
         /*return view('abn');*/
+        return null;
     }
 }
