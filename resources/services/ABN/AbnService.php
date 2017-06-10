@@ -109,6 +109,16 @@ class AbnService
         return json_decode($json, true);
     }
 
+    /**
+     * Build the CRUL and does the crul requests
+     *
+     * @param $type
+     * @param $url
+     * @param $options
+     * @param null $data
+     * @return mixed
+     */
+
     private function curl($type, $url, $options, $data = null)
     {
         $curl = curl_init();
