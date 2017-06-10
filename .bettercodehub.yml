@@ -5,6 +5,11 @@ exclude:
 - /Exeptions/.*
 - /bootstrap/.*
 - /lang/.*
+- /config/
+- /bower_components/
+- /Exeptions/
+- /bootstrap/
+- /lang/
 
 component_depth: 2
 languages:
