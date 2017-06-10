@@ -4,5 +4,5 @@ component_depth: 2
 languages:
 - php
 test:
-  include:
-    - /tests/.*\.php
+    include:
+      - /tests/.*
