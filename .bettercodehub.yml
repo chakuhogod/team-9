@@ -3,6 +3,7 @@ exclude:
 - /config/app.php
 - /config/database.php
 - /config/cache.php
+- /config/queue.php
 component_depth: 2
 languages:
 - php
