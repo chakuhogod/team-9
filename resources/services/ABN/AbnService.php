@@ -49,7 +49,7 @@ class AbnService
      * @return mixed
      */
 
-    public function getTransactions(array $token, $accountNumber = null)
+    public function getTransactions(array $token, $accountNumber = null, $dateFrom, $dateTo )
     {
         if(!$accountNumber)$accountNumber = env('ABN_ACCOUNT_NUMBER');
         $next = true;
@@ -64,11 +64,11 @@ class AbnService
 
             if(empty($nextPage))
             {
-                $url = "https://api-sandbox.abnamro.com/v1/ais/transactions?accountNumber=".$accountNumber."&bookDateFrom=2017-05-10&bookDateTo=2017-06-10";
+                $url = "https://api-sandbox.abnamro.com/v1/ais/transactions?accountNumber=".$accountNumber."&bookDateFrom='.$dateFrom.'&bookDateTo='.$dateTo.'";
             }
             else
             {
-                $url = "https://api-sandbox.abnamro.com/v1/ais/transactions?accountNumber=".$accountNumber."&bookDateFrom=2017-05-10&bookDateTo=2017-06-10&nextPageKey=".$nextPage;
+                $url = "https://api-sandbox.abnamro.com/v1/ais/transactions?accountNumber=".$accountNumber."&bookDateFrom='.$dateFrom.'&bookDateTo='.$dateTo.'&nextPageKey=".$nextPage;
             }
 
 
