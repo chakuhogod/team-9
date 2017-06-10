@@ -19,6 +19,10 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
+Route::get('/app', function () {
+    return view('layouts.app');
+});
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('/');
