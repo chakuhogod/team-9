@@ -3,6 +3,10 @@ exclude:
 component_depth: 2
 languages:
 - php
-test:
+- name: php
+  production:
+    exclude:
+      - /tests/.*
+  test:
     include:
       - /tests/.*
