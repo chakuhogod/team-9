@@ -1,14 +1,7 @@
 exclude:
 - /resources/lang/en/validation.php
-- /config/app.php
-- /config/auth.php
-- /config/broadcasting.php
-- /config/filesystems.php
-- /config/database.php
-- /config/cache.php
-- /config/mail.php
-- /config/services.php
-- /config/queue.php
+- /config
+
 component_depth: 2
 languages:
 - php
