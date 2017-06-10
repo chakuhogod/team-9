@@ -1,11 +1,11 @@
 exclude:
 - /resources/lang/en/validation.php
 - /config/.*
-- /bower_components/.*
-- /Exceptions/.*
+- /app/Exceptions/.*
 - /bootstrap/.*
 - /lang/.*
-- /migrations/.*
+- /database/.*
+- /public/bower_components/.*
 
 component_depth: 2
 languages:
