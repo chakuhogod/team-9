@@ -13,6 +13,5 @@ class AbnController extends Controller
         $oauth = $abn->getAccesToken();
 
         return new JsonResponse($abn->getTransactions($oauth, $request->get('account'), $request->get('dateFrom'), $request->get('dateTo')));
-
     }
 }
