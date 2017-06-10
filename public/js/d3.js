@@ -1,116 +1,173 @@
-var margin = {
-        top: 20,
-        right: 20,
-        bottom: 30,
-        left: 40
+$.ajax({
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: 'api/abn',
+    dataType: 'json',
+    async: true,
+    success: function (data) {
+        var pos_data = data;
+        div_name = "chart";
+
+        draw_histogram(div_name, pos_data);
+
     },
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    error: function (result) {
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
+    }
+})
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10, "");
 
-var svg = d3.select(".content").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var data = [{
-    "id": "2",
-    "name": "wombat",
-    "total": "98000",
-    "record_date": "2016-01-21 00:00:00"
-}, {
-    "id": "5",
-    "name": "wombat",
-    "total": "96000",
-    "record_date": "2016-02-21 00:00:00"
-}, {
-    "id": "8",
-    "name": "wombat",
-    "total": "93000",
-    "record_date": "2016-03-21 00:00:00"
-}, {
-    "id": "11",
-    "name": "wombat",
-    "total": "91000",
-    "record_date": "2016-04-21 00:00:00"
-}, {
-    "id": "14",
-    "name": "wombat",
-    "total": "92000",
-    "record_date": "2016-05-21 00:00:00"
-}, {
-    "id": "17",
-    "name": "wombat",
-    "total": "83000",
-    "record_date": "2016-06-21 00:00:00"
-}, {
-    "id": "20",
-    "name": "wombat",
-    "total": "81000",
-    "record_date": "2016-07-21 00:00:00"
-}];
+//The drawing of the histogram has been broken out from the data retrial 
+// or computation. (In this case the 'Irwin-Hall distribution' computation above)
 
-var k = [];
-data.forEach(function(d) {
-    d.record_date = d.record_date;
-    d.total = +d.total;
-    k.push(d.record_date)
+function draw_histogram(reference, pos_data){
+
+    $(reference).empty()
+
+    //The drawing code needs to reference a responsive elements dimneions
+    var width = $(reference).width();
+    // var width = $(reference).empty().width(); we can chain for effeicanecy as jquery returns jquery.
+
+    // var height = 230;  // We don't want the height to be responsive.
+
+    var margin = {top: 10, right: 30, bottom: 40, left: 30},
+        // width = 960 - margin.left - margin.right,
+        height = 270 - margin.top - margin.bottom;
+
+
+    var histogram = d3.layout.histogram() (pos_data);
+    //var neg_histogram = d3.layout.histogram()(neg_data);
+
+    var x = d3.scale.ordinal()
+        .domain(histogram.map(function(d) { return d.x; }))
+        .rangeRoundBands([0, width]);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+
+    var y = d3.scale.linear()
+        .domain([0, d3.max(histogram.map(function(d) { return d.y; }))])
+        .range([0, height]);
+
+    //var ny = d3.scale.linear()
+    //    .domain([0, d3.max(neg_histogram.map(function(d) { return d.y; }))])
+    //    .range([0, height]);
+
+    var svg = d3.select(reference).append("svg")
+        .attr("width", width)
+        .attr("height", height + 20);
+
+
+
+    svg.selectAll("rect")
+        .data(histogram)
+        .enter().append("rect")
+        .attr("width", x.rangeBand())
+        .attr("x", function(d) { return x(d.x); })
+        .attr("y", function(d) { return height - y(d.y); })
+        .attr("height", function(d) { return y(d.y); });
+
+
+    svg.append("line")
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("y1", height)
+        .attr("y2", height);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + (height)  + ")")
+        .call(xAxis);
+};
+
+//Bind the window resize to the draw method.
+//A simple bind example is
+
+//A better idom for binding with resize is to debounce
+var debounce = function(fn, timeout)
+{
+    var timeoutID = -1;
+    return function() {
+        if (timeoutID > -1) {
+            window.clearTimeout(timeoutID);
+        }
+        timeoutID = window.setTimeout(fn, timeout);
+    }
+};
+
+var debounced_draw = debounce(function() {
+    draw_histogram(div_name, pos_data);
+}, 125);
+
+$(window).resize(debounced_draw);
+
+
+
+const Page = function() {
+    var req,
+        initserialize = true,
+        row;
+
+    var update = function(stats) {
+        // fill key performance indicators
+        updateKpis(stats.kpis);
+
+        if (reinitializeGraphs)
+        {
+            // Init on page load and on changing date
+            initChartDay(stats.graphs.realtime_power, stats.graphs.consumption_during_day);
+            if (focusedDate instanceof moment) $('.panel-title.day').text( trans('ui.site.show.day.title-change') + ' ' + focusedDate.format('L'));
+        }
+        else
+        {
+            updateChartDay(stats.graphs.realtime_power, stats.graphs.consumption_during_day);
+        }
+
+        reinitializeGraphs = false;
+    };
+
+    const fetch = function () {
+        abort();
+        req =  $.ajax({
+            type: "GET",
+            url: 'api/abn' ,
+            dataType: 'json'
+        })
+            .done(function (data) {
+                update(data.data.stats);
+
+                $.each(data.data, function (key) {
+
+                });
+            })
+            .fail(function (jqXHR, ajaxOptions, thrownError) {
+                if (req.statusText ==='abort') {
+                    return;
+                }
+                alert('server not responding...');
+            });
+    };
+
+    const abort = function() {
+        // Abort previous request.
+        if (req && req.readyState !== 4) req.abort();
+    };
+
+    const init = function () {
+        fetch(page);
+    };
+
+    return {
+        init: init
+    };
+
+}();
+
+$(function() {
+    Page.init();
 });
-
-x.domain(data.map(function(d) {
-    return d.record_date;
-}));
-y.domain([0, d3.max(data, function(d) {
-    return d.total;
-})]);
-
-svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
-
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .style("text-anchor", "end")
-    .text("Count");
-
-svg.selectAll(".bar")
-    .data(data)
-    .enter().append("rect")
-    .attr("class", "bar")
-    .attr("x", function(d) {
-        return x(d.record_date);
-    })
-    .attr("width", x.rangeBand())
-    .attr("y", function(d) {
-        return y(d.total);
-    })
-    .attr("height", function(d) {
-        return height - y(d.total);
-    });
-
-
-function type(d) {
-    d.total = +d.total;
-    return d;
-}
