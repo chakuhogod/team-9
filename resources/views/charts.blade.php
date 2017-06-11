@@ -13,7 +13,6 @@
 
         <!-- Main content -->
         <section class="content">
-
             <div class="container content-container">
                 <div class="row">
                     <div class="col-sm-3">
@@ -46,10 +45,9 @@
                     </div>
                 </div>
             </div>
-
-
-
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
+
+
 
 @stop
