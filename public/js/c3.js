@@ -1,7 +1,7 @@
 var Page = function() {
     var updateTimerCurrent,
         updateCurrentPower,
-        chartDay,
+        chart,
         reinitializeGraphs = true,
         myGraphs = true,
         data1=[];
@@ -54,8 +54,8 @@ var Page = function() {
 
             $.each(power, function(key, value) {
                 $.each(value, function (datetime, watt) {
-
-
+                    var j={datetime:watt};
+                    JSON.stringify(j);
                 var time = datetime.split(' ')[1];
 
                 if (!json.hasOwnProperty(time)) {
