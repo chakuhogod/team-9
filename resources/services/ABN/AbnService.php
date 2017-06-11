@@ -55,7 +55,9 @@ class AbnService
                 $url = "https://api-sandbox.abnamro.com/v1/ais/transactions?accountNumber=".$accountNumber."&bookDateFrom='.$dateFrom.'&bookDateTo='.$dateTo.'&nextPageKey=".$nextPage;
             }
 
-           $json = $this->curl('GET', ['url'=>$url, 'options'=> "Authorization: Bearer ".$token['access_token']]);
+            $json = $this->curl('GET', ['url'=>$url, 'options'=> "Authorization: Bearer ".$token['access_token']]);
+
+            die($json);
 
             $json = explode('{', $json);
             $json[0] = "";
