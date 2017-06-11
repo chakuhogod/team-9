@@ -11,7 +11,7 @@ class AbnController extends Controller
     {
         $oauth = $abn->getAccesToken();
 
-        $accounts = $abn->getTransactions($oauth);
+        $accounts = $abn->getTransactionsWithKeyAmount($oauth);
 
         $transaction = $abn->getBalance($oauth);
 
