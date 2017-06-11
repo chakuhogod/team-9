@@ -11,14 +11,12 @@ class AbnService
      */
     public function getAccesToken()
     {
-        $url = "https://api-sandbox.abnamro.com/v1/oauth/token";
-
-        $data = 'grant_type=client_credentials&scope=ais&accountNumber='. env('ABN_ACCOUNT_NUMBER');
-
         $options = [
             'authorization :Basic '.base64_encode(env('ABN_KEY').':'.env('ABN_SECRET')),
             'Content-Type:application/x-www-form-urlencoded',
         ];
+
+        $json = $this->curl('POST', ['url'=>"https://api-sandbox.abnamro.com/v1/oauth/token", 'options'=>$options, 'data'=>'grant_type=client_credentials&scope=ais&accountNumber='. env('ABN_ACCOUNT_NUMBER')] );
 
         $curl = curl_init();
 
@@ -45,22 +43,25 @@ class AbnService
      * Gets Transactions
      *
      * @param  array $token
-     * @param  null $accountNumber
+     * @param  array $data
      * @return mixed
      */
 
-    public function getTransactions(array $token, $accountNumber = null)
+    public function getTransactions(array $token, array $data )
     {
+        $accountNumber = $data['accountNumber'];
+        $dateFrom      = $data['dateFrom'];
+        $dateTo        = $data['dateTo'];
+
         if(!$accountNumber)$accountNumber = env('ABN_ACCOUNT_NUMBER');
         $next = true;
-        $nextPage = null;
-
-        $starttime = microtime(true);
+        $nextPage = Null;
 
         $transactions = [];
 
         while ($next)
         {
+
             if(empty($nextPage))
             {
                 $url = "https://api-sandbox.abnamro.com/v1/ais/transactions?accountNumber=".$accountNumber."&bookDateFrom=2016-05-10&bookDateTo=2017-06-10";
@@ -163,6 +164,7 @@ class AbnService
      * @param null $accountNumber
      * @return mixed
      */
+
     public function getBalance(array $token, $accountNumber = null)
     {
         if(!$accountNumber)$accountNumber = env('ABN_ACCOUNT_NUMBER');
@@ -194,6 +196,7 @@ class AbnService
     }
 
     /**
+
      * Gets Account details
      *
      * @param array $token
@@ -216,6 +219,7 @@ class AbnService
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $options);
 
+
         curl_setopt($curl, CURLOPT_POST, 0);
         curl_setopt($curl, CURLOPT_HEADER,1);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -223,6 +227,7 @@ class AbnService
         $json = curl_exec($curl);
 
         curl_close($curl);
+
 
         $json = explode('{', $json);
         $json[0] = "";

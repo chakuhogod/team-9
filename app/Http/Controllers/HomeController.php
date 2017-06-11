@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $htmlTitle  ='test';
+        $htmlTitle  ='Dashboard';
         return view('dashboard',compact('htmlTitle'));
     }
 
@@ -32,9 +32,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function bookkeeping()
+    public function bookkeeping(Request $request)
     {
-        return view('bookkeeping');
+        $htmlTitle  ='Bookkeeping';
+        $search = $request->input('search');
+        return view('bookkeeping',compact('htmlTitle', 'search'));
     }
 
     /**
@@ -44,17 +46,8 @@ class HomeController extends Controller
      */
     public function charts()
     {
-        return view('charts');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function settings()
-    {
-        return view('settings');
+        $htmlTitle  ='Charts';
+        return view('charts',compact('htmlTitle'));
     }
 
     /**
@@ -64,6 +57,7 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        return view('dashboard');
+        $htmlTitle  ='Dashboard';
+        return view('dashboard',compact('htmlTitle'));
     }
 }

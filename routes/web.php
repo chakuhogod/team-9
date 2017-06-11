@@ -19,6 +19,12 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
+Route::get('ExactAuth', 'ExactAuth@GetData');
+
+Route::get('ExactBack', "ExactBack@GetData");
+
+Route::get('ExactSync', "ExactSyncController@GetData");
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('/');
@@ -27,8 +33,9 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('/dashboard');
 
 Route::get('/charts', 'HomeController@charts')->name('/charts');
 
-Route::get('/settings', 'HomeController@settings')->name('/settings');
+Route::get('/bookkeeping', 'HomeController@bookkeeping')->name('/bookkeeping');
 
+Route::get('abn', 'AbnController@getAccounts');
 
 Route::get('/bookkeeping', 'HomeController@bookkeeping')->name('/bookkeeping');
 
@@ -39,4 +46,3 @@ Route::get('settings', function () {
 Route::get('api/abn', 'AbnController@getAccounts');
 
 Route::get('api/abn/balance', 'AbnController@getBalance');
-

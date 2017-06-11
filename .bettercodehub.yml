@@ -1,0 +1,20 @@
+exclude:
+- /resources/lang/en/validation.php
+- /config/.*
+- /app/Http/Middleware/RedirectIfAuthenticated.php
+- /app/Exceptions/.*
+- /bootstrap/.*
+- /lang/.*
+- /database/.*
+- /public/bower_components/.*
+
+component_depth: 2
+languages:
+- php
+- name: php
+  production:
+    exclude:
+      - /tests/.*
+  test:
+    include:
+      - /tests/.*
