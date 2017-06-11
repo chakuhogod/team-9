@@ -35,7 +35,7 @@ class ExactRepository extends BaseRepository
     function authorize()
     {
         $connection = new \Picqer\Financials\Exact\Connection();
-        $connection->setRedirectUrl('http://localhost:8000/ExactBack'); // Same as entered online in the App Center
+        $connection->setRedirectUrl('http://banklinq.azurewebsites.net/ExactBack'); // Same as entered online in the App Center
         $connection->setExactClientId('9577d765-5430-45e5-9d48-a19217462344');
         $connection->setExactClientSecret('LtV8RW4nDd2Q');
         $connection->redirectForAuthorization();
@@ -69,7 +69,7 @@ class ExactRepository extends BaseRepository
     function connect()
     {
         $connection = new \Picqer\Financials\Exact\Connection();
-        $connection->setRedirectUrl('http://localhost:8000/ExactBack');
+        $connection->setRedirectUrl('http://banklinq.azurewebsites.net/ExactBack');
         $connection->setExactClientId('9577d765-5430-45e5-9d48-a19217462344');
         $connection->setExactClientSecret('LtV8RW4nDd2Q');
 

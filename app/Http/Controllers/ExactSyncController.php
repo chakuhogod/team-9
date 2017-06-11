@@ -11,7 +11,7 @@ class ExactSyncController extends BaseController
 
         //$json = $abnService->getTransactions($abnService->getAccesToken(),['accountNumber'=>'', 'dateFrom'=>'2017-06-10','dateTo'=>'2017-06-10']);
 
-        echo 'Currently syncing to exact online...';
+        echo 'Exact updated!';
 
         $items = mb_split("\r", file_get_contents("../app/Repositories/ExactSync.csv"));
 
