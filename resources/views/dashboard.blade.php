@@ -30,7 +30,7 @@
             <div id="graph-day"></div>
                 <h4>Transactions per month</h4>
             <div id="chart"></div>
-                <h4> Purchase & sales per month</h4>
+                <h4>Balance</h4>
             <div id="chart1"></div>
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->

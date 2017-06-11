@@ -436,7 +436,27 @@ var Page = function() {
         abortCurrent();
 
         updateCurrentPower = $.getJSON('api/abn', parameters, function(data) {
-            update(data.stats);
+            var chart1 = c3.generate({
+                data: {
+                    json: data,
+
+                    type: 'bar'
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        height: 50
+                    }
+                },
+                bar: {
+                    width: {
+                        ratio: 0.5 // this makes bar width 50% of length between ticks
+                    }
+                    // or
+                    //width: 100 // this makes bar width 100px
+                },
+                bindto: '#chart1'
+            });
 
         }).always(function() {
             // schedule new update.
@@ -458,7 +478,7 @@ var Page = function() {
     var init = function() {
         reinitializeGraphs = true;
         myGraphs = true;
-        //fetchCurrent();
+        fetchCurrent();
         fetchKpi();
 
         // making use of jQuery Visibility plugin
@@ -497,31 +517,4 @@ var chart = c3.generate({
             height: 50
         }
     }
-});
-
-
-var chart1 = c3.generate({
-    data: {
-        x : 'x',
-        columns: [
-            ['x', '2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06'],
-            ['Purchase', 30, 200, 100, 400, 150, 250],
-            ['Sales', 130, 100, 140, 200, 150, 50]
-        ],
-        type: 'bar'
-    },
-    axis: {
-        x: {
-            type: 'category',
-            height: 50
-        }
-    },
-    bar: {
-        width: {
-            ratio: 0.5 // this makes bar width 50% of length between ticks
-        }
-        // or
-        //width: 100 // this makes bar width 100px
-    },
-    bindto: '#chart1'
 });

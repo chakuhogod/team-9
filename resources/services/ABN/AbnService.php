@@ -153,7 +153,7 @@ class AbnService
             }
         }
 
-        return json_encode($return);
+        return array("data" => $return);
     }
 
     /**
