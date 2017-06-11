@@ -16,7 +16,7 @@ class AbnService
             'Content-Type:application/x-www-form-urlencoded',
         ];
 
-        $json = $this->curl('POST', "https://api-sandbox.abnamro.com/v1/oauth/token", $options, 'grant_type=client_credentials&scope=ais&accountNumber='. env('ABN_ACCOUNT_NUMBER') );
+        $json = $this->curl('POST', ['url'=>"https://api-sandbox.abnamro.com/v1/oauth/token", 'options'=>$options, 'data'=>'grant_type=client_credentials&scope=ais&accountNumber='. env('ABN_ACCOUNT_NUMBER')] );
 
         $json = explode('{', $json)[1];
 
@@ -34,7 +34,7 @@ class AbnService
     public function getTransactions(array $token, array $data )
     {
         $accountNumber = $data['accountNumber'];
-        $dateFrom      = $data['dataForm'];
+        $dateFrom      = $data['dateFrom'];
         $dateTo        = $data['dateTo'];
 
         if(!$accountNumber)$accountNumber = env('ABN_ACCOUNT_NUMBER');
@@ -55,7 +55,7 @@ class AbnService
                 $url = "https://api-sandbox.abnamro.com/v1/ais/transactions?accountNumber=".$accountNumber."&bookDateFrom='.$dateFrom.'&bookDateTo='.$dateTo.'&nextPageKey=".$nextPage;
             }
 
-            $json = $this->curl('GET', ['url'=>$url, 'options'=> "Authorization: Bearer ".$token['access_token']]);
+            $json = $this->curl('GET', ['url'=>$url, 'options'=> ["Authorization: Bearer ".$token['access_token']]]);
 
             $json = explode('{', $json);
             $json[0] = "";
