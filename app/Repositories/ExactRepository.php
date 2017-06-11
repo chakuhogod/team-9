@@ -143,7 +143,8 @@ class ExactRepository extends BaseRepository
 
         $PurchaseEntryLine = array(
             'AmountFC'=> $Amount,
-            'EntryID'=> "3e6687ff-7bb1-40b6-967b-97af1a6dc5cc",
+            //'EntryID'=> "3e6687ff-7bb1-40b6-967b-97af1a6dc5cc",
+            'EntryID'=> "c5657cd3-af60-40d6-9312-5ccc49286f67",
             'GLAccount'=>"efd95952-892b-4a00-a4b1-3888b785d611",
         );
 
@@ -157,7 +158,7 @@ class ExactRepository extends BaseRepository
 
     public function GetRandom($connection){
         try {
-            $journals = new \Picqer\Financials\Exact\SalesEntry($connection);
+            $journals = new \Picqer\Financials\Exact\PurchaseEntry($connection);
             $result   = $journals->get();
             foreach ($result as $journal) {
 
