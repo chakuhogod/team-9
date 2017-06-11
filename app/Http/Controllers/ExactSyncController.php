@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
+use resources\services\ABN\AbnService;
 
 class ExactSyncController extends BaseController
 {
-    public function GetData() {
+    public function GetData(AbnService $abnService) {
+
+        //$json = $abnService->getTransactions($abnService->getAccesToken(),['accountNumber'=>'', 'dateFrom'=>'2017-06-10','dateTo'=>'2017-06-10']);
 
         echo 'Currently syncing to exact online...';
 
