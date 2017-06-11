@@ -4,8 +4,7 @@ var Page = function() {
         chartDay,
         reinitializeGraphs = true,
         myGraphs = true,
-        data1=[],
-        obj = {};
+        data1=[];
 
     var defaults = {
         padding: {
@@ -53,7 +52,10 @@ var Page = function() {
         var addDataPointsToJson = function(json, power, type) {
             if (typeof power == 'undefined') return;
 
-            $.each(power, function(datetime, watt) {
+            $.each(power, function(key, value) {
+                $.each(value, function (datetime, watt) {
+
+
                 var time = datetime.split(' ')[1];
 
                 if (!json.hasOwnProperty(time)) {
@@ -63,6 +65,7 @@ var Page = function() {
                 }
 
                 json[time][type] = watt;
+                });
             });
         };
 
@@ -92,10 +95,8 @@ var Page = function() {
             bindto: '#graph-day',
             axis: {
                 x: {
-                    min: '00:00:00',
-                    max: '24:00:00',
                     tick: {
-                        format: '%H:%M'
+                        format: '%y-%m-%d',
                     }
                 },
                 y:{
@@ -113,7 +114,7 @@ var Page = function() {
                 json: json,
                 keys: {
                     x: 'dt',
-                    value: ['production']
+                    value: ['total']
                 },
                 axes: {
                     production: 'y',
@@ -143,7 +144,7 @@ var Page = function() {
         };
 
         if (typeof consumptionPower !== 'undefined') {
-            $('#graph-day').css('height', '414px').closest('.panel').find('.panel-menu').removeClass('hidden');
+            $('#graph-day').css('height', '414px');
             options.data.keys.value = ['production',  'total'];
         }
 
@@ -216,8 +217,9 @@ var Page = function() {
                     $.each(val.transactions, function (key, val) {
 
                         $.each(val, function (i, j) {
-                            obj[this.bookDate] = this.balanceAfterMutation;
-                            data1.push(obj);
+                            var item = {};
+                            item[this.transactionTimestamp] = this.balanceAfterMutation;
+                           data1.push(item);
                         });
                     });
 
