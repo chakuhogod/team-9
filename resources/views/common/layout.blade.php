@@ -24,7 +24,7 @@
                                 document.getElementById('exact-form').submit();">
                             <b>Synchronise Exact</b>
                         </a>
-                        <form id="exact-form" action="" method="POST" style="display: none;">
+                        <form id="exact-form" action="http://localhost:8000/ExactSync" method="GET" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                     </li>

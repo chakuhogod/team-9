@@ -23,6 +23,8 @@ Route::get('ExactAuth', 'ExactAuth@GetData');
 
 Route::get('ExactBack', "ExactBack@GetData");
 
+Route::get('ExactSync', "ExactSyncController@GetData");
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('/');
