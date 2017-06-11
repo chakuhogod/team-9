@@ -29,7 +29,12 @@
             @if(isset($search))
                 <h2>Search results for "{{ $search }}"</h2>
                 <?php
-                    
+                    $abn = new \resources\services\ABN\AbnService();
+                    $accessToken = $abn->getAccesToken();
+                    $transactions = $abn->getTransactions($accessToken, null, date('Y-m-d', strtotime("-30 days")), date("Y-m-d"));
+                    foreach($transactions as $transaction){
+
+                    }
                 ?>
             @endif
 
