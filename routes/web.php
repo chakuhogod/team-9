@@ -11,15 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
+Route::get('/login', function () {
+    return view('auth.login');
 });
 
-Route::get('admin', function () {
-    return view('admin_template');
+Route::get('/register', function () {
+    return view('auth.register');
 });
-
 
 Route::get('ExactAuth', 'ExactAuth@GetData');
 
 Route::get('ExactBack', "ExactBack@GetData");
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('/');
+
+Route::get('/dashboard', 'HomeController@dashboard')->name('/dashboard');
+
+Route::get('/charts', 'HomeController@charts')->name('/charts');
+
+Route::get('/bookkeeping', 'HomeController@bookkeeping')->name('/bookkeeping');
+
+Route::get('abn', 'AbnController@getAccounts');
