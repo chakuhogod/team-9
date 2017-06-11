@@ -49,6 +49,23 @@ class ExactRepository extends BaseRepository
         $this->setValue('expires_in', $connection->getTokenExpires());
     }
 
+    function dochecks($connection) {
+        if ($this->getValue('authorizationcode')) {
+            $connection->setAuthorizationCode($this->getValue('authorizationcode'));
+        }
+        if ($this->getValue('accesstoken')) {
+            $connection->setAccessToken($this->getValue('accesstoken'));
+        }
+        if ($this->getValue('refreshtoken')) {
+            $connection->setRefreshToken($this->getValue('refreshtoken'));
+        }
+        if ($this->getValue('expires_in')) {
+            $connection->setTokenExpires($this->getValue('expires_in'));
+        }
+
+        return $connection;
+    }
+
     function connect()
     {
         $connection = new \Picqer\Financials\Exact\Connection();
@@ -56,25 +73,10 @@ class ExactRepository extends BaseRepository
         $connection->setExactClientId('9577d765-5430-45e5-9d48-a19217462344');
         $connection->setExactClientSecret('LtV8RW4nDd2Q');
 
-        // Retrieves authorizationcode from database
-        if ($this->getValue('authorizationcode')) {
-            $connection->setAuthorizationCode($this->getValue('authorizationcode'));
-        }
-        // Retrieves accesstoken from database
-        if ($this->getValue('accesstoken')) {
-            $connection->setAccessToken($this->getValue('accesstoken'));
-        }
-        // Retrieves refreshtoken from database
-        if ($this->getValue('refreshtoken')) {
-            $connection->setRefreshToken($this->getValue('refreshtoken'));
-        }
-        // Retrieves expires timestamp from database
-        if ($this->getValue('expires_in')) {
-            $connection->setTokenExpires($this->getValue('expires_in'));
-        }
-        // Set callback to save newly generated tokens
+        $connection = $this->dochecks($connection);
+
         $connection->setTokenUpdateCallback('tokenUpdateCallback');
-        // Make the client connect and exchange tokens
+
         try {
             $connection->connect();
         } catch (\Exception $e) {
