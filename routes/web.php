@@ -36,3 +36,13 @@ Route::get('/charts', 'HomeController@charts')->name('/charts');
 Route::get('/bookkeeping', 'HomeController@bookkeeping')->name('/bookkeeping');
 
 Route::get('abn', 'AbnController@getAccounts');
+
+Route::get('/bookkeeping', 'HomeController@bookkeeping')->name('/bookkeeping');
+
+Route::get('settings', function () {
+    return view('settings');
+});
+
+Route::get('api/abn', 'AbnController@getAccounts');
+
+Route::get('api/abn/balance', 'AbnController@getBalance');

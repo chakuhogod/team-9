@@ -1,18 +1,18 @@
-.bar {
-    fill: steelblue;
+.c3-xgrid-line line {
+    stroke: blue;
 }
-.bar:hover {
-    fill: brown;
+.c3-xgrid-line.grid4 line {
+    stroke: pink;
 }
-.axis {
-    font: 10px sans-serif;
+.c3-xgrid-line.grid4 text {
+    fill: pink;
 }
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
+.c3-ygrid-line line {
+    stroke: red;
 }
-.x.axis path {
-    display: none;
+.c3-ygrid-line.grid800 line {
+    stroke: green;
+}
+.c3-ygrid-line.grid800 text {
+    fill: green;
 }

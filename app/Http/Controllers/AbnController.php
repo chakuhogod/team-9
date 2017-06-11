@@ -8,11 +8,26 @@ use resources\services\ABN\AbnService;
 
 class AbnController extends Controller
 {
-    public function getTransactions(AbnService $abn, Request $request)
+    public function getAccounts(AbnService $abn)
     {
         $oauth = $abn->getAccesToken();
 
-        return new JsonResponse($abn->getTransactions($oauth, $request->get('account'),
-            $request->get('dateFrom'), $request->get('dateTo')));
+        $accounts = $abn->getTransactionsWithKeyAmount($oauth);
+
+        $transaction = $abn->getBalance($oauth);
+
+        $acountInfo = $abn->getAccountInfo($oauth);
+
+
+        return new JsonResponse($accounts);
+    }
+    public function getBalance(AbnService $abn)
+    {
+        $oauth = $abn->getAccesToken();
+
+        $acountInfo = $abn->getAccountInfo($oauth);
+
+
+        return new JsonResponse($acountInfo);
     }
 }
