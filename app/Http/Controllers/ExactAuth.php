@@ -11,9 +11,16 @@ class ExactAuth extends BaseController
 {
     public function GetData(ExactRepository $exact) {
 
+        file_put_contents("../app/Repositories/ExactSendBack.csv", "");
+
         file_put_contents("../app/Repositories/ExactPurchase.csv", "");
         file_put_contents("../app/Repositories/ExactSales.csv", "");
         file_put_contents("../app/Repositories/storage.json", "[]");
+
+        if (request()->has('Sendback')) {
+
+            file_put_contents("../app/Repositories/ExactSendBack.csv", $_GET["Sendback"]);
+        }
 
         if (request()->has('Sales')) {
 
