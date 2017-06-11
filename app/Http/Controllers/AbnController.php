@@ -20,4 +20,13 @@ class AbnController extends Controller
 
         return new JsonResponse($accounts);
     }
+    public function getBalance(AbnService $abn)
+    {
+        $oauth = $abn->getAccesToken();
+
+        $acountInfo = $abn->getAccountInfo($oauth);
+
+
+        return new JsonResponse($acountInfo);
+    }
 }

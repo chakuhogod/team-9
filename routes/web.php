@@ -38,3 +38,5 @@ Route::get('settings', function () {
 
 Route::get('api/abn', 'AbnController@getAccounts');
 
+Route::get('api/abn/balance', 'AbnController@getBalance');
+
