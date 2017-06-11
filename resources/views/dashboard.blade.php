@@ -22,5 +22,6 @@
 
 @section('scripts')
     <script src="{{ asset ("/bower_components/d3/d3.min.js") }}"></script>
-    <script src="{{ elixir('js/d3.js') }}"></script>
+    <script src="{{ asset ("/bower_components/c3/c3.min.js") }}"></script>
+    <script src="{{ 'js/c3.js'}}"></script>
 @stop
