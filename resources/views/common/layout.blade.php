@@ -19,10 +19,20 @@
                 <ul class="nav navbar-nav">
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
+                        <a href=""
+                           onclick="event.preventDefault();
+                                document.getElementById('exact-form').submit();">
+                            <b>Synchronise Exact</b>
+                        </a>
+                        <form id="exact-form" action="" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                    <li class="dropdown user user-menu">
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                            Logout
+                            <b>Logout</b>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

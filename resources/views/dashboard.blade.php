@@ -14,7 +14,7 @@
         <section class="content">
 
             <!-- Your Page Content Here -->
-            <div id="chart"></div>
+
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 

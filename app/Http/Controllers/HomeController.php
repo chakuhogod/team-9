@@ -32,10 +32,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function bookkeeping()
+    public function bookkeeping(Request $request)
     {
         $htmlTitle  ='Bookkeeping';
-        return view('bookkeeping',compact('htmlTitle'));
+        $search = $request->input('search');
+        return view('bookkeeping',compact('htmlTitle', 'search'));
     }
 
     /**
