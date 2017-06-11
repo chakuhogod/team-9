@@ -30,6 +30,7 @@ class ExactSyncController extends BaseController
                 echo "<br>Sale order found: ".$amount;
 
                 Header("Location: http://localhost:8000/ExactAuth?Sales=".$amount."&Sendback=http://localhost:8000/ExactSync");
+                exit;
             }
             if(0 === strpos($newvalue, 'P'))
             {
@@ -38,6 +39,7 @@ class ExactSyncController extends BaseController
                 echo "<br>Purchase order found: ".$amount;
 
                 Header("Location: http://localhost:8000/ExactAuth?Purchase=".$amount."&Sendback=http://localhost:8000/ExactSync");
+                exit;
             }
         }
 
