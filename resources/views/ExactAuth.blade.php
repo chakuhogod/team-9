@@ -65,11 +65,8 @@
     </style>
 </head>
 <body>
-    <h1><?php echo $test; ?></h1>
-
-    <a href="http://localhost:8000/ExactAddSale">
-        <button>Go go go!</button>
-    </a>
+<h1><?php echo $test; ?></h1>
+<h2>ExactAuth.blade.php</h2>
 
 </body>
 </html>

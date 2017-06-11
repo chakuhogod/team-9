@@ -65,8 +65,8 @@
     </style>
 </head>
 <body>
-    <h1><?php echo $test; ?></h1>
-
+<h1><?php echo $test; ?></h1>
+<h2>ExactBack.blade.php</h2>
 
 </body>
 </html>
